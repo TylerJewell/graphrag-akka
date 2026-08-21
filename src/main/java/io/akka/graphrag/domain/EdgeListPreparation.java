@@ -199,7 +199,9 @@ public final class EdgeListPreparation {
                 case "gt" -> ">";
                 case "quot" -> "\"";
                 case "apos" -> "'";
-                case "nbsp" -> " ";
+                // Written as an escape: a non-breaking space looks exactly like
+                // a space in a diff, and this is the one place it must not be one.
+                case "nbsp" -> "\u00A0";
                 default -> numericEntity(name);
             };
             if (replacement == null) {
